@@ -1,18 +1,30 @@
 package uk.gov.hmrc.helloworldreactivemongo.controllers
 
-import javax.inject.Singleton
-
-import uk.gov.hmrc.play.bootstrap.controller.BaseController
-import uk.gov.hmrc.play.http.logging.MdcLoggingExecutionContext._
+import javax.inject.{Inject, Singleton}
+import play.api.Logger
+import play.api.libs.json.Json
 import play.api.mvc._
+import uk.gov.hmrc.helloworldreactivemongo.services.{HelloWorld, HelloWorldRepository}
+import uk.gov.hmrc.play.bootstrap.controller.BaseController
 
-import scala.concurrent.Future
+import scala.concurrent.ExecutionContext
 
 @Singleton()
-class MicroserviceHelloWorld extends BaseController {
+class MicroserviceHelloWorld @Inject()(repo: HelloWorldRepository)(implicit val ec: ExecutionContext)
+    extends BaseController {
 
-	def hello() = Action.async { implicit request =>
-		Future.successful(Ok("Hello world"))
-	}
+  def hello() = Action {
+    Ok("hello-world")
+  }
+
+  def testMongo() = Action.async {
+    repo.insert(HelloWorld.random).flatMap { _ =>
+      repo.count.map { count =>
+        val msg = s"Count of objects = $count"
+        Logger.info(msg)
+        Ok(Json.obj(msg -> msg))
+      }
+    }
+  }
 
 }
