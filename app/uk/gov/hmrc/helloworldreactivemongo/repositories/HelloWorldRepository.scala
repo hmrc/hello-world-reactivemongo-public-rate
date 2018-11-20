@@ -1,4 +1,4 @@
-package uk.gov.hmrc.helloworldreactivemongo.services
+package uk.gov.hmrc.helloworldreactivemongo.repositories
 
 import java.util.UUID
 
