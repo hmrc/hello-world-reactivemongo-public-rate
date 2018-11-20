@@ -2,7 +2,7 @@ package uk.gov.hmrc.helloworldreactivemongo.repositories
 
 import java.util.UUID
 
-import javax.inject.Inject
+import javax.inject.{Inject, Singleton}
 import play.api.libs.json.{Json, OFormat}
 import play.modules.reactivemongo.ReactiveMongoComponent
 import uk.gov.hmrc.mongo.ReactiveRepository

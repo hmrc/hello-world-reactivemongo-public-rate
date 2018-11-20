@@ -1,6 +1,6 @@
 package uk.gov.hmrc.helloworldreactivemongo.services
 
-import javax.inject.Inject
+import javax.inject.{Inject, Singleton}
 import play.api.Logger
 import uk.gov.hmrc.helloworldreactivemongo.repositories.{HelloWorld, HelloWorldRepository}
 
