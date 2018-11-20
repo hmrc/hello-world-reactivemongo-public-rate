@@ -6,6 +6,7 @@ import uk.gov.hmrc.helloworldreactivemongo.repositories.{HelloWorld, HelloWorldR
 
 import scala.concurrent.{ExecutionContext, Future}
 
+@Singleton
 class HelloWorldService @Inject()(repo: HelloWorldRepository)(implicit ec: ExecutionContext) {
 
   def addObjectAndCountAll(): Future[Int] =

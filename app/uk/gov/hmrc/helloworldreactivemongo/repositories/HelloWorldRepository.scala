@@ -19,5 +19,6 @@ object HelloWorld {
 
 }
 
+@Singleton
 class HelloWorldRepository @Inject()(reactiveMongoComponent: ReactiveMongoComponent)(implicit val ec: ExecutionContext)
     extends ReactiveRepository("hello-world", reactiveMongoComponent.mongoConnector.db, HelloWorld.format)
